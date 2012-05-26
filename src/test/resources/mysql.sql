@@ -1,0 +1,1 @@
+insert USER values (1, 'jack@colorccc', 'pwd', 'salt', '2012-05-22', 0);
