@@ -38,8 +38,8 @@ public class UserApi {
 	@Resource(name = "userServiceImpl")
 	UserService userServiceImpl;
 
-	@Resource(name = "userBeanToResourceDto")
-	UserBeanToViewDto userBeanToResourceDto;
+	@Resource(name = "userBeanToViewDto")
+	UserBeanToViewDto userBeanToViewDto;
 
 	@GET
 	@Path("/{id}")
@@ -58,14 +58,14 @@ public class UserApi {
 
 		// Another sample use DTO transfer [ServiceBean] to JSON attribute, this case is suit for the attribute in JSON is changed from [ServiceBean] parameters.
 		UserResource userResource = new UserResource();
-		UserView userView = userBeanToResourceDto.transferTypetoBean(userBean);
+		UserView userView = userBeanToViewDto.transferTypetoBean(userBean);
 		userResource.setBaseObject(userView);
 
 		return Response.ok().entity(userResource).build();
 	}
 
 	@GET
-	@Path("/user")
+	@Path("/page")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getUsers(@QueryParam("startRows") int startRows, @QueryParam("fetchSize") int fetchSize) {

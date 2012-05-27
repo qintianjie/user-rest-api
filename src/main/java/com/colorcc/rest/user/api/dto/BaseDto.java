@@ -1,5 +1,7 @@
 package com.colorcc.rest.user.api.dto;
 
+import com.colorcc.rest.user.resource.view.View;
+
 
 public interface BaseDto<T, V extends View> {
 

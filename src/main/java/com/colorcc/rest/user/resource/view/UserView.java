@@ -1,6 +1,5 @@
 package com.colorcc.rest.user.resource.view;
 
-import com.colorcc.rest.user.api.dto.View;
 
 public class UserView extends View {
 	private int id;

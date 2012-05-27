@@ -5,7 +5,7 @@ import javax.inject.Named;
 import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.view.UserView;
 
-@Named(value = "userBeanToResourceDto")
+@Named(value = "userBeanToViewDto")
 public class UserBeanToViewDto implements BaseDto<UserBean, UserView> {
 
 	@Override
