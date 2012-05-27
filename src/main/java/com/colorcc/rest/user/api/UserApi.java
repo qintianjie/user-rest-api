@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -112,6 +113,33 @@ public class UserApi {
 		}
 		userServiceImpl.deleteUser(id);
 		return Response.ok().build();
+	}
+
+	/**
+	 * http://localhost:8083/user?email=jack5@colorcc.com
+	 * 
+	 * @param email
+	 * @return
+	 */
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchUserByEmail(@QueryParam("email") String email) {
+		if (email == null) {
+			return null;
+		}
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("Search user who's email is " + email);
+		}
+
+		UserBean userBean = userServiceImpl.loadUserByEmail(email);
+
+		UserResource userResource = new UserResource();
+		UserView userView = userBeanToViewDto.transferTypetoBean(userBean);
+		userResource.setBaseObject(userView);
+
+		return Response.ok().entity(userResource).build();
 	}
 
 }
