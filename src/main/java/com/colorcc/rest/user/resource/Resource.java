@@ -2,10 +2,12 @@ package com.colorcc.rest.user.resource;
 
 import java.net.URI;
 
-public class Resource {
+public abstract class Resource<T> {
 	
 	private URI uri;
-
+	
+	protected T baseObject;
+	
 	public URI getUri() {
 		return uri;
 	}
@@ -13,5 +15,9 @@ public class Resource {
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
-	
+
+	public abstract T getBaseObject();
+
+	public abstract void setBaseObject(T baseObject);
+
 }

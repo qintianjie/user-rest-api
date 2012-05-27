@@ -1,6 +1,7 @@
 package com.colorcc.rest.user.api.dto;
 
-public interface BaseDto<T, V> {
+
+public interface BaseDto<T, V extends View> {
 
 	public V transferTypetoBean(T t, Object ... objects);
 
