@@ -1,4 +1,4 @@
-package com.colorcc.rest.user.api.dto;
+package com.colorcc.rest.user.resource.dto;
 
 import com.colorcc.rest.user.resource.view.View;
 

@@ -19,9 +19,9 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.colorcc.rest.user.api.dto.UserBeanToViewDto;
 import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.UserResource;
+import com.colorcc.rest.user.resource.dto.UserBeanToViewDto;
 import com.colorcc.rest.user.resource.view.UserView;
 import com.colorcc.rest.user.service.UserService;
 
