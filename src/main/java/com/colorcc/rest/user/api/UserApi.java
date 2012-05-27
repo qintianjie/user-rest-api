@@ -1,17 +1,17 @@
 package com.colorcc.rest.user.api;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -64,17 +64,54 @@ public class UserApi {
 		return Response.ok().entity(userResource).build();
 	}
 
-	@GET
-	@Path("/page")
-	@Produces(MediaType.APPLICATION_JSON)
+	/**
+	 * { "status": 0, "email": "jack0@colorcc.com", "passwd": "pwd", "registerTime": "May 27, 2012 12:00:00 AM", "salt": "salt" }
+	 * 
+	 * @param userBean
+	 * @return
+	 */
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getUsers(@QueryParam("startRows") int startRows, @QueryParam("fetchSize") int fetchSize) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("Find user list");
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createUser(UserBean userBean) {
+		if (logger.isInfoEnabled()) {
+			logger.info("Create a user who's email is " + userBean.getEmail());
+		}
+		userServiceImpl.createUser(userBean);
+		return Response.ok().build();
+	}
+
+	/**
+	 * { "id" : 2, "status": 0, "email": "jack22222@colorcc.com", "passwd": "pwd", "registerTime": "May 27, 2012 12:00:00 AM", "salt": "salt" }
+	 * 
+	 * @param userBean
+	 * @return
+	 */
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response modifyUser(UserBean userBean) {
+		if (userBean == null) {
+			return null;
+		}
+		if (logger.isInfoEnabled()) {
+			logger.info("Update a user who id is " + userBean.getId());
 		}
 
-		List<UserBean> userList = userServiceImpl.findUser(startRows, fetchSize);
-		return Response.ok().entity(userList).build();
+		userServiceImpl.update(userBean);
+		return Response.ok().build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteUser(@PathParam("id") int id) {
+		if (logger.isInfoEnabled()) {
+			logger.info("Delete user who's id is " + id);
+		}
+		userServiceImpl.deleteUser(id);
+		return Response.ok().build();
 	}
 
 }

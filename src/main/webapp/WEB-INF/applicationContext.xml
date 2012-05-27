@@ -26,7 +26,7 @@
 		p:maxConnectionsPerPartition="30" p:minConnectionsPerPartition="10"
 		p:partitionCount="3" p:acquireIncrement="5" p:statementsCacheSize="100"
 		p:releaseHelperThreads="3" p:initSQL="SELECT 1" />
-
+		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="WEB-INF/config/mybatis3-config.xml" />
