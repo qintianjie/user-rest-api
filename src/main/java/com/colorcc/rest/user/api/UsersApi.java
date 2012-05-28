@@ -24,19 +24,35 @@ import com.colorcc.rest.user.resource.dto.UserBeanToViewDto;
 import com.colorcc.rest.user.resource.view.UserView;
 import com.colorcc.rest.user.service.UserService;
 
+/**
+ * <p>
+ * GET: /users?startRow=XXX&fetchSize=XXX, get page users.
+ * </p>
+ * 
+ * @author qtj
+ * @version 2012-05-28
+ * 
+ */
 @Named
 @Singleton
 @Path("/users")
 public class UsersApi {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UsersApi.class);
-	
+
 	@Resource(name = "userServiceImpl")
 	UserService userServiceImpl;
 
 	@Resource(name = "userBeanToViewDto")
 	UserBeanToViewDto userBeanToViewDto;
-	
+
+	/**
+	 * http://localhost:8083/users?startRow=0&fetchSize=5
+	 * 
+	 * @param startRow
+	 * @param fetchSize
+	 * @return
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -44,13 +60,13 @@ public class UsersApi {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Find users by from line " + startRow + " to " + (startRow + fetchSize));
 		}
-		
+
 		if (fetchSize > 1000) {
 			logger.warn("Query too many recores, that's may cause low performance.");
 		}
-		
+
 		List<UserBean> userBeans = userServiceImpl.findUser(startRow, fetchSize);
-		
+
 		List<UserResource> userResourceList = new ArrayList<UserResource>();
 		for (UserBean userBean : userBeans) {
 			UserResource userResource = new UserResource();
@@ -62,6 +78,5 @@ public class UsersApi {
 		usersResource.setBaseObject(userResourceList);
 		return Response.ok().entity(usersResource).build();
 	}
-	
 
 }

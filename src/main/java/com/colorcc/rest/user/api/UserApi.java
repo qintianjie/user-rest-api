@@ -26,6 +26,33 @@ import com.colorcc.rest.user.resource.dto.UserBeanToViewDto;
 import com.colorcc.rest.user.resource.view.UserView;
 import com.colorcc.rest.user.service.UserService;
 
+/**
+ * <p>
+ * GET : /user/{id}, get user by id.
+ * </p>
+ * 
+ * <p>
+ * POST : /user, create a user.
+ * </p>
+ * 
+ * <p>
+ * PUT : /user, modify a user.
+ * </p>
+ * 
+ * <p>
+ * DELETE : /user/{id}, delete user by id.
+ * </p>
+ * 
+ * <p>
+ * GET: /user?email=XXX, get user by email.
+ * </p>
+ * 
+ * 
+ * @author qtj
+ * @version 2012-05-27
+ * 
+ */
+
 @Named
 @Singleton
 @Path("/user")
