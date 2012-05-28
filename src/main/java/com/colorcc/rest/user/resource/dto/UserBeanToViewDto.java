@@ -23,7 +23,7 @@ public class UserBeanToViewDto implements BaseDto<UserBean, UserView> {
 	}
 
 	@Override
-	public UserBean transferBeanToType(UserView v, Object... objects) {
+	public UserBean transferBeanToType(UserView userView, Object... objects) {
 		return null;
 	}
 }
