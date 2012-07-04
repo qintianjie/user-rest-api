@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.UserResource;
-import com.colorcc.rest.user.resource.dto.UserBeanToViewDto;
+import com.colorcc.rest.user.resource.transfer.UserBeanToViewTransfer;
 import com.colorcc.rest.user.resource.view.UserView;
 import com.colorcc.rest.user.service.UserService;
 
@@ -66,8 +66,8 @@ public class UserApi {
 	@Resource(name = "userServiceImpl")
 	UserService userServiceImpl;
 
-	@Resource(name = "userBeanToViewDto")
-	UserBeanToViewDto userBeanToViewDto;
+	@Resource(name = "userBeanToViewTransfer")
+	UserBeanToViewTransfer userBeanToViewTransfer;
 
 	@GET
 	@Path("/{id}")
@@ -86,7 +86,7 @@ public class UserApi {
 
 		// Another sample use DTO transfer [ServiceBean] to JSON attribute, this case is suit for the attribute in JSON is changed from [ServiceBean] parameters.
 		UserResource userResource = new UserResource();
-		UserView userView = userBeanToViewDto.transferTypetoBean(userBean);
+		UserView userView = userBeanToViewTransfer.transferTypetoBean(userBean);
 		userResource.setBaseObject(userView);
 
 		return Response.ok().entity(userResource).build();
@@ -163,7 +163,7 @@ public class UserApi {
 		UserBean userBean = userServiceImpl.loadUserByEmail(email);
 
 		UserResource userResource = new UserResource();
-		UserView userView = userBeanToViewDto.transferTypetoBean(userBean);
+		UserView userView = userBeanToViewTransfer.transferTypetoBean(userBean);
 		userResource.setBaseObject(userView);
 
 		return Response.ok().entity(userResource).build();

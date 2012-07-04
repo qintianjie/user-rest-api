@@ -1,12 +1,12 @@
-package com.colorcc.rest.user.resource.dto;
+package com.colorcc.rest.user.resource.transfer;
 
 import javax.inject.Named;
 
 import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.view.UserView;
 
-@Named(value = "userBeanToViewDto")
-public class UserBeanToViewDto implements BaseDto<UserBean, UserView> {
+@Named(value = "userBeanToViewTransfer")
+public class UserBeanToViewTransfer implements Transfer<UserBean, UserView> {
 
 	@Override
 	public UserView transferTypetoBean(UserBean userBean, Object... objects) {

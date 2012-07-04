@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.UserResource;
 import com.colorcc.rest.user.resource.UsersResource;
-import com.colorcc.rest.user.resource.dto.UserBeanToViewDto;
+import com.colorcc.rest.user.resource.transfer.UserBeanToViewTransfer;
 import com.colorcc.rest.user.resource.view.UserView;
 import com.colorcc.rest.user.service.UserService;
 
@@ -43,8 +43,8 @@ public class UsersApi {
 	@Resource(name = "userServiceImpl")
 	UserService userServiceImpl;
 
-	@Resource(name = "userBeanToViewDto")
-	UserBeanToViewDto userBeanToViewDto;
+	@Resource(name = "userBeanToViewTransfer")
+	UserBeanToViewTransfer userBeanToViewTransfer;
 
 	/**
 	 * http://localhost:8083/users?startRow=0&fetchSize=5
@@ -70,7 +70,7 @@ public class UsersApi {
 		List<UserResource> userResourceList = new ArrayList<UserResource>();
 		for (UserBean userBean : userBeans) {
 			UserResource userResource = new UserResource();
-			UserView userView = userBeanToViewDto.transferTypetoBean(userBean);
+			UserView userView = userBeanToViewTransfer.transferTypetoBean(userBean);
 			userResource.setBaseObject(userView);
 			userResourceList.add(userResource);
 		}
