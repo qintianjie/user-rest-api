@@ -2,8 +2,8 @@ package com.colorcc.rest.user.resource.transfer;
 
 import javax.inject.Named;
 
-import com.colorcc.rest.user.bean.UserBean;
 import com.colorcc.rest.user.resource.view.UserView;
+import com.colorcc.user.bean.UserBean;
 
 @Named(value = "userBeanToViewTransfer")
 public class UserBeanToViewTransfer implements Transfer<UserBean, UserView> {
